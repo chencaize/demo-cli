@@ -1,8 +1,10 @@
 import { IConfig } from "./interfaces/config";
 import { CONST_VIRS, COMMAND } from "./vir";
 import { AddExector } from "./exector";
+const chalk = require("chalk");
 
 async function exec(cmd: String, config: IConfig) {
+    try{
     console.log(CONST_VIRS.spinner.start);
 
     let exector;
@@ -16,6 +18,9 @@ async function exec(cmd: String, config: IConfig) {
     await exector?.exec(config);
 
     console.log(CONST_VIRS.spinner.end);
+    }catch(error){
+        console.log(chalk.white(error));
+    }
 }
 
 module.exports = exec;

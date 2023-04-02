@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+const path = require("path");
+
+const exec = require(path.resolve(__dirname, "../lib/index.js"));
+
+//global options
+// program.option('-a, --a <a>', "a")
+
+//version
+program.version(require("../package.json").version, '-v, --version');
+
+// program.option()
+
+// add
+program.command('add')
+    .description("add")
+    .action((option, cmd) => {
+        exec(cmd._name, { ...program.opts(), ...option });
+    })
+
+program.parse(process.argv);
